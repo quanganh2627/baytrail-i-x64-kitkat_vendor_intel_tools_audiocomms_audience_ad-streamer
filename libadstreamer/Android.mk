@@ -1,8 +1,5 @@
 LOCAL_PATH:= $(call my-dir)
 
-#Do not compile the Audience proxy if the board does not include Audience
-ifeq ($(BOARD_HAVE_AUDIENCE),true)
-
 include $(CLEAR_VARS)
 
 #######################################################################
@@ -40,7 +37,7 @@ LOCAL_ERROR_FLAGS += \
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 LOCAL_MODULE := libadstreamer
-LOCAL_MODULE_TAGS := debug
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -96,4 +93,3 @@ include $(BUILD_HOST_STATIC_LIBRARY)
 
 endif
 
-endif
