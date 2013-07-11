@@ -20,6 +20,7 @@
 
 #include <full_rw.h>
 #include <stdio.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -461,7 +462,8 @@ int process_ad_streamer_cmd(const ad_streamer_cmd_t *streaming_cmd)
         return -1;
     }
 
-    outfile_fd = open(streaming_cmd->fname, O_CREAT | O_WRONLY);
+    outfile_fd = open(streaming_cmd->fname, O_CREAT | O_WRONLY,
+                      S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
     if (outfile_fd < 0) {
 
         printf("Cannot open output file %s: %s\n", streaming_cmd->fname, strerror(errno));
